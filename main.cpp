@@ -1,6 +1,5 @@
-#include <iostream>
-
-using namespace std;
+#include "Developer.h"
+#include "Klien.h"
 
 int main()
 {
