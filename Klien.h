@@ -1,9 +1,11 @@
 #ifndef KLIEN_H_INCLUDED
 #define KLIEN_H_INCLUDED
 #include <iostream>
-#include "Developer.h"
 
 using namespace std;
+
+struct elmDeveloper;
+typedef elmDeveloper *adrDeveloper;
 
 struct InfoChild {
     string idKlien;

@@ -1,11 +1,7 @@
 #ifndef DEVELOPER_H_INCLUDED
 #define DEVELOPER_H_INCLUDED
-#include <iostream>
+
 #include "Klien.h"
-
-using namespace std;
-
-typedef struct elmDeveloper *adrDeveloper;
 
 struct infotypeDeveloper {
     string idDeveloper;
@@ -14,6 +10,7 @@ struct infotypeDeveloper {
     int rating;
 };
 
+typedef struct elmDeveloper *adrDeveloper;
 struct elmDeveloper {
     infotypeDeveloper info;
     adrDeveloper next;
@@ -23,24 +20,28 @@ struct elmDeveloper {
 
 struct ListDeveloper {
     adrDeveloper first;
+    adrDeveloper last;
 };
 
 void createListDeveloper(ListDeveloper &L);
 adrDeveloper createElementDeveloper(infotypeDeveloper x);
-
+bool isEmptyDev(ListDeveloper L);
 void insertFirstDeveloper(ListDeveloper &L, adrDeveloper P);
 void insertLastDeveloper(ListDeveloper &L, adrDeveloper P);
-
 void deleteFirstDeveloper(ListDeveloper &L, adrDeveloper &P);
 void deleteLastDeveloper(ListDeveloper &L, adrDeveloper &P);
-void deleteDeveloperByID(ListDeveloper &L, string id);
 
 adrDeveloper findDeveloper(ListDeveloper L, string id);
-void connectKlienToDeveloper(adrDeveloper P_Dev, PointerChild P_Kli);
+
+void insertSortedDeveloper(ListDeveloper &L, adrDeveloper P);
+void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P);
+void deleteDeveloperByID(ListDeveloper &L, string id);
+void deleteAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper &P);
+
+void insertChildToDeveloper(ListDeveloper &L, InfoChild infoKlien, string idDev);
 
 void showAllDeveloper(ListDeveloper L);
-void showDeveloperAndAllClients(ListDeveloper L);
 
-adrDeveloper findDeveloperWithMaxClients(ListDeveloper L);
+adrDeveloper findMaxClientsBySpecialty(ListDeveloper L, string specialty);
 
 #endif // DEVELOPER_H_INCLUDED
