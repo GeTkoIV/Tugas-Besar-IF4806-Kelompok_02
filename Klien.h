@@ -32,7 +32,7 @@ void deleteLast_Child(adrDeveloper P_Dev, PointerChild &P_Kli);
 
 void insertSorted_Child(adrDeveloper P_Dev, PointerChild P_Kli);
 void insertAfter_Child(PointerChild Prec, PointerChild P_Kli);
-void deleteChildByProgress(adrDeveloper P_Dev, string id, PointerChild &P_Kli);
+void deleteChildByProgress(adrDeveloper P_Dev, string progress, PointerChild &P_Kli);
 void deleteAfter_Child(adrDeveloper P_Dev, PointerChild Prec, PointerChild &P_Kli);
 
 PointerChild findElement_Child(adrDeveloper P_Dev, string ID);
