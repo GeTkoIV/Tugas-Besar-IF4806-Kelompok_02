@@ -1,7 +1,7 @@
 #ifndef KLIEN_H_INCLUDED
 #define KLIEN_H_INCLUDED
+
 #include <iostream>
-#include "Developer.h"
 
 using namespace std;
 
@@ -9,33 +9,36 @@ struct InfoChild {
     string idKlien;
     string namaKlien;
     string project;
+    string progress;
+    int nilaiKontrak;
 };
 
 typedef struct NodeChild *PointerChild;
-
 struct NodeChild {
     InfoChild data;
     PointerChild next;
-    adrDeveloper parent;
 };
 
-struct ListChild {
-    PointerChild first;
-};
+struct elmDeveloper;
+typedef elmDeveloper *adrDeveloper;
+struct ListDeveloper;
 
-void createList_Child(ListChild &L);
 PointerChild createElement_Child(InfoChild data);
 
-void insertFirst_Child(ListChild &L, PointerChild P);
-void insertLast_Child(ListChild &L, PointerChild P);
+void insertFirst_Child(adrDeveloper P_Dev, PointerChild P_Kli);
+void insertLast_Child(adrDeveloper P_Dev, PointerChild P_Kli);
+void deleteFirst_Child(adrDeveloper P_Dev, PointerChild &P_Kli);
+void deleteLast_Child(adrDeveloper P_Dev, PointerChild &P_Kli);
 
-PointerChild findElement_Child(ListChild L, string ID);
-void showAll_Child(ListChild L);
+void insertSorted_Child(adrDeveloper P_Dev, PointerChild P_Kli);
+void insertAfter_Child(PointerChild Prec, PointerChild P_Kli);
+void deleteChildByProgress(adrDeveloper P_Dev, string id, PointerChild &P_Kli);
+void deleteAfter_Child(adrDeveloper P_Dev, PointerChild Prec, PointerChild &P_Kli);
 
-void deleteFirst_Child(ListChild &L, PointerChild &P);
-void deleteLast_Child(ListChild &L, PointerChild &P);
-void deleteElement_Child(ListChild &L, PointerChild P);
+PointerChild findElement_Child(adrDeveloper P_Dev, string ID);
+void showAllClientsByOneDeveloper(ListDeveloper L, string idDev);
+void showChildByDeveloperAndProgress(ListDeveloper L, string idDev, string targetProgress);
 
-bool isEmpty_Child(ListChild L);
+PointerChild findKlienWithMinContract(ListDeveloper L);
 
 #endif // KLIEN_H_INCLUDED
