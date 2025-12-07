@@ -111,3 +111,13 @@ void showAllDeveloper(ListDeveloper L) {
         cur = cur->next;
     }
 }
+
+void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
+    if (Prec == nullptr || P == nullptr) return;
+    P->next = Prec->next;
+    P->prev = Prec;
+    Prec->next = P;
+    if (P->next != nullptr) {
+        P->next->prev = P;
+    }
+}
