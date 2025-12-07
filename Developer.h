@@ -15,7 +15,7 @@ struct elmDeveloper {
     infotypeDeveloper info;
     adrDeveloper next;
     adrDeveloper prev;
-    PointerChild nextKlien;
+    PointerChild firstKlien;
 };
 
 struct ListDeveloper {
@@ -42,6 +42,5 @@ void insertChildToDeveloper(ListDeveloper &L, InfoChild infoKlien, string idDev)
 
 void showAllDeveloper(ListDeveloper L);
 
-adrDeveloper findMaxClientsBySpecialty(ListDeveloper L, string specialty);
-
+void findMaxClientsBySpecialty(ListDeveloper L, string specialty);
 #endif // DEVELOPER_H_INCLUDED

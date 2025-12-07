@@ -7,6 +7,7 @@ using namespace std;
 
 struct elmDeveloper;
 typedef elmDeveloper *adrDeveloper;
+struct ListDeveloper;
 
 struct InfoChild {
     string idKlien;
@@ -22,10 +23,6 @@ struct NodeChild {
     PointerChild next;
 };
 
-struct elmDeveloper;
-typedef elmDeveloper *adrDeveloper;
-struct ListDeveloper;
-
 PointerChild createElement_Child(InfoChild data);
 
 void insertFirst_Child(adrDeveloper P_Dev, PointerChild P_Kli);
@@ -35,13 +32,13 @@ void deleteLast_Child(adrDeveloper P_Dev, PointerChild &P_Kli);
 
 void insertSorted_Child(adrDeveloper P_Dev, PointerChild P_Kli);
 void insertAfter_Child(PointerChild Prec, PointerChild P_Kli);
-void deleteChildByProgress(adrDeveloper P_Dev, string id, PointerChild &P_Kli);
+void deleteChildByProgress(adrDeveloper P_Dev, string progress, PointerChild &P_Kli);
 void deleteAfter_Child(adrDeveloper P_Dev, PointerChild Prec, PointerChild &P_Kli);
 
 PointerChild findElement_Child(adrDeveloper P_Dev, string ID);
 void showAllClientsByOneDeveloper(ListDeveloper L, string idDev);
 void showChildByDeveloperAndProgress(ListDeveloper L, string idDev, string targetProgress);
 
-PointerChild findKlienWithMinContract(ListDeveloper L);
+void findKlienWithMinContract(ListDeveloper L);
 
 #endif // KLIEN_H_INCLUDED
