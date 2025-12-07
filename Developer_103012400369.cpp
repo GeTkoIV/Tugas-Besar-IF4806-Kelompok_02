@@ -13,7 +13,7 @@ adrDeveloper createElementDeveloper(infotypeDeveloper x) {
     P->info = x;
     P->next = nullptr;
     P->prev = nullptr;
-    P->nextKlien = nullptr;
+    P->firstKlien = nullptr;
     return P;
 }
 
@@ -57,14 +57,12 @@ void insertLastDeveloper(ListDeveloper &L, adrDeveloper P) {
 void deleteDeveloperByID(ListDeveloper &L, string id) {
     adrDeveloper target = findDeveloper(L, id);
     if (target == nullptr) return;
-    // if target has children, we should delete them or detach them to avoid leaks
-    PointerChild cur = target->nextKlien;
+    PointerChild cur = target->firstKlien;
     while (cur != nullptr) {
         PointerChild tmp = cur;
         cur = cur->next;
         delete tmp;
     }
-    // remove from DLL
     if (target == L.first && target == L.last) {
         L.first = nullptr;
         L.last = nullptr;
@@ -92,13 +90,11 @@ void showAllDeveloper(ListDeveloper L) {
              << ", Nama: " << cur->info.namaDeveloper
              << ", Spesialisasi: " << cur->info.spesialisasi
              << ", Rating: " << cur->info.rating << "\n";
-        // show client count
         int cnt = 0;
-        PointerChild c = cur->nextKlien;
+        PointerChild c = cur->firstKlien;
         while (c != nullptr) { cnt++; c = c->next; }
         cout << "  Jumlah klien: " << cnt << "\n";
-        // optional: list clients inline (commented out)
-        PointerChild curChild = cur->nextKlien;
+        PointerChild curChild = cur->firstKlien;
         while (curChild != nullptr) {
             cout << "    - [" << curChild->data.idKlien << "] "
                  << curChild->data.namaKlien

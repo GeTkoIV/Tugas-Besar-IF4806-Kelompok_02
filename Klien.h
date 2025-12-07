@@ -7,6 +7,7 @@ using namespace std;
 
 struct elmDeveloper;
 typedef elmDeveloper *adrDeveloper;
+struct ListDeveloper;
 
 struct InfoChild {
     string idKlien;
@@ -21,10 +22,6 @@ struct NodeChild {
     InfoChild data;
     PointerChild next;
 };
-
-struct elmDeveloper;
-typedef elmDeveloper *adrDeveloper;
-struct ListDeveloper;
 
 PointerChild createElement_Child(InfoChild data);
 
@@ -42,6 +39,6 @@ PointerChild findElement_Child(adrDeveloper P_Dev, string ID);
 void showAllClientsByOneDeveloper(ListDeveloper L, string idDev);
 void showChildByDeveloperAndProgress(ListDeveloper L, string idDev, string targetProgress);
 
-PointerChild findKlienWithMinContract(ListDeveloper L);
+void findKlienWithMinContract(ListDeveloper L);
 
 #endif // KLIEN_H_INCLUDED
