@@ -1,8 +1,8 @@
-#ifndef DEVELOPER_H_INCLUDED
-#define DEVELOPER_H_INCLUDED
+#ifndef MLL_H_INCLUDED
+#define MLL_H_INCLUDED
+#include <iostream>
 
-#include "Klien.h"
-
+using namespace std;
 struct infotypeDeveloper {
     string idDeveloper;
     string namaDeveloper;
@@ -11,6 +11,19 @@ struct infotypeDeveloper {
 };
 
 typedef struct elmDeveloper *adrDeveloper;
+struct InfoChild {
+    string idKlien;
+    string namaKlien;
+    string project;
+    string progress;
+    int nilaiKontrak;
+};
+
+typedef struct NodeChild *PointerChild;
+struct NodeChild {
+    InfoChild data;
+    PointerChild next;
+};
 struct elmDeveloper {
     infotypeDeveloper info;
     adrDeveloper next;
@@ -43,4 +56,24 @@ void insertChildToDeveloper(ListDeveloper &L, InfoChild infoKlien, string idDev)
 void showAllDeveloper(ListDeveloper L);
 
 void findMaxClientsBySpecialty(ListDeveloper L, string specialty);
-#endif // DEVELOPER_H_INCLUDED
+
+PointerChild createElement_Child(InfoChild data);
+
+void insertFirst_Child(adrDeveloper P_Dev, PointerChild P_Kli);
+void insertLast_Child(adrDeveloper P_Dev, PointerChild P_Kli);
+void deleteFirst_Child(adrDeveloper P_Dev, PointerChild &P_Kli);
+void deleteLast_Child(adrDeveloper P_Dev, PointerChild &P_Kli);
+
+void insertSorted_Child(adrDeveloper P_Dev, PointerChild P_Kli);
+void insertAfter_Child(PointerChild Prec, PointerChild P_Kli);
+void deleteChildByProgress(adrDeveloper P_Dev, string progress, PointerChild &P_Kli);
+void deleteAfter_Child(adrDeveloper P_Dev, PointerChild Prec, PointerChild &P_Kli);
+
+PointerChild findElement_Child(adrDeveloper P_Dev, string ID);
+void showAllClientsByOneDeveloper(ListDeveloper L, string idDev);
+void showChildByDeveloperAndProgress(ListDeveloper L, string idDev, string targetProgress);
+
+void findKlienWithMinContract(ListDeveloper L);
+
+
+#endif // MLL_H_INCLUDED

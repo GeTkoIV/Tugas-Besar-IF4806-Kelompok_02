@@ -1,5 +1,4 @@
-#include "Developer.h"
-#include "Klien.h"
+#include "mll.h"
 void insertSortedDeveloper(ListDeveloper &L, adrDeveloper P){
     if (L.first == nullptr) {
         insertFirstDeveloper(L, P);
