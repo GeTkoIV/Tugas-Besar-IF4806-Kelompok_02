@@ -30,27 +30,42 @@ adrDeveloper findDeveloper(ListDeveloper L, string id) {
 }
 
 void insertFirstDeveloper(ListDeveloper &L, adrDeveloper P) {
-    if (P == nullptr) return;
-    if (isEmptyDev(L)) {
-        L.first = P;
-        L.last = P;
-    } else {
-        P->next = L.first;
-        L.first->prev = P;
-        L.first = P;
+    if (P != nullptr) {
+        if (isEmptyDev(L)) {
+            L.first = P;
+            L.last = P;
+        } else {
+            P->next = L.first;
+            L.first->prev = P;
+            L.first = P;
+        }
     }
+
 }
 
 void insertLastDeveloper(ListDeveloper &L, adrDeveloper P) {
-    if (P == nullptr) return;
-    if (isEmptyDev(L)) {
-        L.first = P;
-        L.last = P;
-    } else {
-        L.last->next = P;
-        P->prev = L.last;
-        L.last = P;
+    if (P != nullptr){
+        if (isEmptyDev(L)) {
+            L.first = P;
+            L.last = P;
+        } else {
+            L.last->next = P;
+            P->prev = L.last;
+            L.last = P;
+        }
     }
+}
+
+void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
+    if (Prec != nullptr || P != nullptr) {
+        P->next = Prec->next;
+        P->prev = Prec;
+        if (P->next != nullptr) {
+            P->next->prev = P;
+        }
+        Prec->next = P;
+    }
+
 }
 
 void deleteDeveloperByID(ListDeveloper &L, string id) {
@@ -107,12 +122,3 @@ void showAllDeveloper(ListDeveloper L) {
     }
 }
 
-void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
-    if (Prec == nullptr || P == nullptr) return;
-    P->next = Prec->next;
-    P->prev = Prec;
-    Prec->next = P;
-    if (P->next != nullptr) {
-        P->next->prev = P;
-    }
-}
