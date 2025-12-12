@@ -1,5 +1,4 @@
-#include "Klien.h"
-#include "Developer.h"
+#include "mll.h"
 #include <iostream>
 using namespace std;
 
@@ -11,22 +10,25 @@ PointerChild createElement_Child(InfoChild data) {
 }
 
 void insertFirst_Child(adrDeveloper P_Dev, PointerChild P_Kli) {
-    if (P_Dev == nullptr || P_Kli == nullptr) return;
-    P_Kli->next = P_Dev->nextKlien;
-    P_Dev->nextKlien = P_Kli;
+    if (P_Dev != nullptr || P_Kli != nullptr) {
+        P_Kli->next = P_Dev->firstKlien;
+        P_Dev->firstKlien = P_Kli;
+    }
 }
 
 void insertLast_Child(adrDeveloper P_Dev, PointerChild P_Kli) {
-    if (P_Dev == nullptr || P_Kli == nullptr) return;
-    if (P_Dev->nextKlien == nullptr) {
-        P_Dev->nextKlien = P_Kli;
+    if (P_Dev == nullptr || P_Kli == nullptr){
+        if (P_Dev->firstKlien == nullptr) {
+            P_Dev->firstKlien = P_Kli;
+        } else {
+            PointerChild cur = P_Dev->firstKlien;
+            while (cur->next != nullptr) {
+                cur = cur->next;
+            }
+            cur->next = P_Kli;
+        }
         P_Kli->next = nullptr;
-        return;
     }
-    PointerChild cur = P_Dev->nextKlien;
-    while (cur->next != nullptr) cur = cur->next;
-    cur->next = P_Kli;
-    P_Kli->next = nullptr;
 }
 
 void showAllClientsByOneDeveloper(ListDeveloper L, string idDev) {
@@ -36,7 +38,7 @@ void showAllClientsByOneDeveloper(ListDeveloper L, string idDev) {
         return;
     }
     cout << "Clients of Developer " << dev->info.namaDeveloper << " (" << dev->info.idDeveloper << "):\n";
-    PointerChild cur = dev->nextKlien;
+    PointerChild cur = dev->firstKlien;
     if (cur == nullptr) {
         cout << "  (tidak ada klien)\n";
         return;

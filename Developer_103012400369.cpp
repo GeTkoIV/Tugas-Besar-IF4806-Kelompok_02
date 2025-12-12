@@ -1,5 +1,4 @@
-#include "Developer.h"
-#include "Klien.h"
+#include "mll.h"
 #include <iostream>
 using namespace std;
 
@@ -13,7 +12,7 @@ adrDeveloper createElementDeveloper(infotypeDeveloper x) {
     P->info = x;
     P->next = nullptr;
     P->prev = nullptr;
-    P->nextKlien = nullptr;
+    P->firstKlien = nullptr;
     return P;
 }
 
@@ -31,40 +30,53 @@ adrDeveloper findDeveloper(ListDeveloper L, string id) {
 }
 
 void insertFirstDeveloper(ListDeveloper &L, adrDeveloper P) {
-    if (P == nullptr) return;
-    if (isEmptyDev(L)) {
-        L.first = P;
-        L.last = P;
-    } else {
-        P->next = L.first;
-        L.first->prev = P;
-        L.first = P;
+    if (P != nullptr) {
+        if (isEmptyDev(L)) {
+            L.first = P;
+            L.last = P;
+        } else {
+            P->next = L.first;
+            L.first->prev = P;
+            L.first = P;
+        }
     }
+
 }
 
 void insertLastDeveloper(ListDeveloper &L, adrDeveloper P) {
-    if (P == nullptr) return;
-    if (isEmptyDev(L)) {
-        L.first = P;
-        L.last = P;
-    } else {
-        L.last->next = P;
-        P->prev = L.last;
-        L.last = P;
+    if (P != nullptr){
+        if (isEmptyDev(L)) {
+            L.first = P;
+            L.last = P;
+        } else {
+            L.last->next = P;
+            P->prev = L.last;
+            L.last = P;
+        }
     }
+}
+
+void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
+    if (Prec != nullptr || P != nullptr) {
+        P->next = Prec->next;
+        P->prev = Prec;
+        if (P->next != nullptr) {
+            P->next->prev = P;
+        }
+        Prec->next = P;
+    }
+
 }
 
 void deleteDeveloperByID(ListDeveloper &L, string id) {
     adrDeveloper target = findDeveloper(L, id);
     if (target == nullptr) return;
-    // if target has children, we should delete them or detach them to avoid leaks
-    PointerChild cur = target->nextKlien;
+    PointerChild cur = target->firstKlien;
     while (cur != nullptr) {
         PointerChild tmp = cur;
         cur = cur->next;
         delete tmp;
     }
-    // remove from DLL
     if (target == L.first && target == L.last) {
         L.first = nullptr;
         L.last = nullptr;
@@ -92,13 +104,11 @@ void showAllDeveloper(ListDeveloper L) {
              << ", Nama: " << cur->info.namaDeveloper
              << ", Spesialisasi: " << cur->info.spesialisasi
              << ", Rating: " << cur->info.rating << "\n";
-        // show client count
         int cnt = 0;
-        PointerChild c = cur->nextKlien;
+        PointerChild c = cur->firstKlien;
         while (c != nullptr) { cnt++; c = c->next; }
         cout << "  Jumlah klien: " << cnt << "\n";
-        // optional: list clients inline (commented out)
-        PointerChild curChild = cur->nextKlien;
+        PointerChild curChild = cur->firstKlien;
         while (curChild != nullptr) {
             cout << "    - [" << curChild->data.idKlien << "] "
                  << curChild->data.namaKlien
@@ -112,12 +122,3 @@ void showAllDeveloper(ListDeveloper L) {
     }
 }
 
-void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
-    if (Prec == nullptr || P == nullptr) return;
-    P->next = Prec->next;
-    P->prev = Prec;
-    Prec->next = P;
-    if (P->next != nullptr) {
-        P->next->prev = P;
-    }
-}
