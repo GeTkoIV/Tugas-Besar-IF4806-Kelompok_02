@@ -2,20 +2,20 @@
 void insertSortedDeveloper(ListDeveloper &L, adrDeveloper P){
     if (L.first == nullptr) {
         insertFirstDeveloper(L, P);
-    } else if (P->info.idDeveloper < L.first->info.idDeveloper) {
+    }
+    else if (P->info.idDeveloper < L.first->info.idDeveloper) {
         insertFirstDeveloper(L, P);
-    } else if (P->info.idDeveloper > L.last->info.idDeveloper) {
+    }
+    else if (P->info.idDeveloper > L.last->info.idDeveloper) {
         insertLastDeveloper(L, P);
-    } else {
+    }
+    else {
         adrDeveloper Q = L.first;
-        while (Q->next != nullptr) {
-            if (P->info.idDeveloper < Q->next->info.idDeveloper) {
-                insertAfterDeveloper(Q, P);
-                Q->next = nullptr;
-            } else {
-                Q = Q->next;
-            }
+        while (Q->next != nullptr &&
+               P->info.idDeveloper > Q->next->info.idDeveloper) {
+            Q = Q->next;
         }
+        insertAfterDeveloper(Q, P);
     }
 }
 

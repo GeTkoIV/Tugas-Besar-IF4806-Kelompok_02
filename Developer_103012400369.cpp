@@ -71,7 +71,6 @@ void insertAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper P) {
     }
 }
 
-
 void deleteDeveloperByID(ListDeveloper &L, string id) {
     adrDeveloper target = findDeveloper(L, id);
     if (target == nullptr) return;
