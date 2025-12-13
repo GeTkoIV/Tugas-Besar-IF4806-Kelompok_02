@@ -40,7 +40,6 @@ void insertFirstDeveloper(ListDeveloper &L, adrDeveloper P) {
             L.first = P;
         }
     }
-
 }
 
 void insertLastDeveloper(ListDeveloper &L, adrDeveloper P) {
@@ -56,17 +55,22 @@ void insertLastDeveloper(ListDeveloper &L, adrDeveloper P) {
     }
 }
 
-void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
-    if (Prec != nullptr || P != nullptr) {
+void insertAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper P) {
+    if (Prec != nullptr && P != nullptr) {
+        P->next = nullptr;
+        P->prev = nullptr;
         P->next = Prec->next;
         P->prev = Prec;
-        if (P->next != nullptr) {
-            P->next->prev = P;
+        if (Prec->next != nullptr) {
+            Prec->next->prev = P;
+        } else {
+            L.last = P;
         }
+
         Prec->next = P;
     }
-
 }
+
 
 void deleteDeveloperByID(ListDeveloper &L, string id) {
     adrDeveloper target = findDeveloper(L, id);
