@@ -72,8 +72,8 @@ void deleteAfter_Child(adrDeveloper P_Dev, PointerChild Prec, PointerChild &P_Kl
 PointerChild findElement_Child(adrDeveloper P_Dev, string ID);
 void showAllClientsByOneDeveloper(ListDeveloper L, string idDev);
 void showChildByDeveloperAndProgress(ListDeveloper L, string idDev, string targetProgress);
-
+void deleteChildById(adrDeveloper P_Dev, string id, PointerChild &P_Kli);
 void findKlienWithMinContract(ListDeveloper L);
-
+PointerChild findElement_Child(adrDeveloper P_Dev, string idKlien);
 
 #endif // MLL_H_INCLUDED

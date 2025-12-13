@@ -62,12 +62,15 @@ void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
         P->prev = Prec;
         if (P->next != nullptr) {
             P->next->prev = P;
+        }else {
+            adrDeveloper Llast = Prec;
+            while (Llast->next != nullptr){
+                Llast = Llast->next;
+            }
         }
-        Prec->next = P;
+
     }
-
 }
-
 void deleteDeveloperByID(ListDeveloper &L, string id) {
     adrDeveloper target = findDeveloper(L, id);
     if (target == nullptr) return;
