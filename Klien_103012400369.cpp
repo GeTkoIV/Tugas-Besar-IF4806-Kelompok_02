@@ -30,6 +30,38 @@ void insertLast_Child(adrDeveloper P_Dev, PointerChild P_Kli) {
     }
 }
 
+void deleteFirst_Child(adrDeveloper P_Dev, PointerChild &P_Kli) {
+    P_Kli = nullptr;
+    if (P_Dev != nullptr) {
+        if (P_Dev->firstKlien != nullptr) {
+            P_Kli = P_Dev->firstKlien;
+            P_Dev->firstKlien = P_Kli->next;
+            P_Kli->next = nullptr;
+        } else {
+            cout << "INFO: Developer ini tidak memiliki klien." << endl;
+        }
+    }
+}
+
+void deleteLast_Child(adrDeveloper P_Dev, PointerChild &P_Kli) {
+    P_Kli = nullptr;
+    if (P_Dev != nullptr) {
+        if (P_Dev->firstKlien == nullptr) {
+            cout << "INFO: Developer ini tidak memiliki klien." << endl;
+        } else if (P_Dev->firstKlien->next == nullptr) {
+            P_Kli = P_Dev->firstKlien;
+            P_Dev->firstKlien = nullptr;
+        } else {
+            PointerChild Q = P_Dev->firstKlien;
+            while (Q->next->next != nullptr) {
+                Q = Q->next;
+            }
+            P_Kli = Q->next;
+            Q->next = nullptr;
+        }
+    }
+}
+
 void showAllClientsByOneDeveloper(ListDeveloper L, string idDev) {
     adrDeveloper P_Dev = findDeveloper(L, idDev);
 
