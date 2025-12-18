@@ -47,7 +47,7 @@ void deleteLastDeveloper(ListDeveloper &L, adrDeveloper &P);
 adrDeveloper findDeveloper(ListDeveloper L, string id);
 
 void insertSortedDeveloper(ListDeveloper &L, adrDeveloper P);
-void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P);
+void insertAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper P);
 void deleteDeveloperByID(ListDeveloper &L, string id);
 void deleteAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper &P);
 

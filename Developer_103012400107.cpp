@@ -15,7 +15,7 @@ void insertSortedDeveloper(ListDeveloper &L, adrDeveloper P){
                P->info.idDeveloper > Q->next->info.idDeveloper) {
             Q = Q->next;
         }
-        insertAfterDeveloper(Q, P);
+        insertAfterDeveloper(L,Q,P);
     }
 }
 

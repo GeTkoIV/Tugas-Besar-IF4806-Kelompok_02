@@ -57,7 +57,7 @@ void adminPage(ListDeveloper &L) {
                 cout << "Rating: "; cin >> x.rating;
 
                 adrDeveloper P = createElementDeveloper(x);
-                insertAfterDeveloper(Prec, P);
+                insertAfterDeveloper(L, Prec, P);
                 cout << "Insert After berhasil.\n";
             } else {
                 cout << "Developer tidak ditemukan.\n";

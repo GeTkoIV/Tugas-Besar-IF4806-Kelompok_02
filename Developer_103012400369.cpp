@@ -1,6 +1,4 @@
 #include "mll.h"
-#include <iostream>
-using namespace std;
 
 void createListDeveloper(ListDeveloper &L) {
     L.first = nullptr;
