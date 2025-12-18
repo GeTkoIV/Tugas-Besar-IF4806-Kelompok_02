@@ -19,52 +19,45 @@ bool isEmptyDev(ListDeveloper L) {
 }
 
 adrDeveloper findDeveloper(ListDeveloper L, string id) {
-    adrDeveloper cur = L.first;
-    while (cur != nullptr) {
-        if (cur->info.idDeveloper == id) return cur;
-        cur = cur->next;
+    adrDeveloper P = L.first;
+    while (P != nullptr) {
+        if (P->info.idDeveloper == id) {
+            return P;
+        }
+        P = P->next;
     }
     return nullptr;
 }
 
 void insertFirstDeveloper(ListDeveloper &L, adrDeveloper P) {
-    if (P != nullptr) {
-        if (isEmptyDev(L)) {
-            L.first = P;
-            L.last = P;
-        } else {
-            P->next = L.first;
-            L.first->prev = P;
-            L.first = P;
-        }
+    if (isEmptyDev(L)) {
+        L.first = P;
+        L.last = P;
+    } else {
+        P->next = L.first;
+        L.first->prev = P;
+        L.first = P;
     }
 }
 
 void insertLastDeveloper(ListDeveloper &L, adrDeveloper P) {
-    if (P != nullptr){
-        if (isEmptyDev(L)) {
-            L.first = P;
-            L.last = P;
-        } else {
-            L.last->next = P;
-            P->prev = L.last;
-            L.last = P;
-        }
+    if (isEmptyDev(L)) {
+        L.first = P;
+        L.last = P;
+    } else {
+        P->prev = L.last;
+        L.last->next = P;
+        L.last = P;
     }
 }
 
-void insertAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper P) {
-    if (Prec != nullptr && P != nullptr) {
-        P->next = nullptr;
-        P->prev = nullptr;
+void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
+    if (Prec != nullptr) {
         P->next = Prec->next;
         P->prev = Prec;
         if (Prec->next != nullptr) {
             Prec->next->prev = P;
-        } else {
-            L.last = P;
         }
-
         Prec->next = P;
     }
 }
