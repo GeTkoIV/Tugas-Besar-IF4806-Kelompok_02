@@ -173,3 +173,16 @@ PointerChild findElement_Child(adrDeveloper P_Dev, string idKlien) {
     }
     return P;
 }
+void updateProgressKlien(adrDeveloper P_Dev, string idKlien, string progressBaru) {
+    PointerChild P = P_Dev->firstKlien;
+
+    while (P != nullptr) {
+        if (P->data.idKlien == idKlien) {
+            P->data.progress = progressBaru;
+            cout << "Progress klien berhasil diperbarui.\n";
+        }
+        P = P->next;
+    }
+
+    cout << "Klien tidak ditemukan.\n";
+}

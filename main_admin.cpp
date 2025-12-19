@@ -1,24 +1,24 @@
 #include "mll.h"
 
 void menuAdmin() {
-    cout << "\n===== MENU ADMIN =====\n";
-    cout << "=== DEVELOPER ===\n";
-    cout << "1. Insert First Developer\n";
-    cout << "2. Insert After Developer\n";
-    cout << "3. Insert Last Developer\n";
-    cout << "4. Delete First Developer\n";
-    cout << "5. Delete After Developer\n";
-    cout << "6. Delete Last Developer\n";
+    cout << endl <<"===== MENU ADMIN =====" <<endl;
+    cout << "=== DEVELOPER ==="<<endl;
+    cout << "1. Insert First Developer"<<endl;
+    cout << "2. Insert After Developer"<<endl;
+    cout << "3. Insert Last Developer"<<endl;
+    cout << "4. Delete First Developer"<<endl;
+    cout << "5. Delete After Developer"<<endl;
+    cout << "6. Delete Last Developer"<<endl;
 
-    cout << "\n=== CLIENT (CHILD) ===\n";
-    cout << "7. Insert First Client\n";
-    cout << "8. Insert After Client\n";
-    cout << "9. Insert Last Client\n";
-    cout << "10. Delete First Client\n";
-    cout << "11. Delete After Client\n";
-    cout << "12. Delete Last Client\n";
+    cout << endl <<"=== CLIENT (CHILD) ==="<<endl;
+    cout << "7. Insert First Client"<<endl;
+    cout << "8. Insert After Client"<<endl;
+    cout << "9. Insert Last Client"<<endl;
+    cout << "10. Delete First Client"<<endl;
+    cout << "11. Delete After Client"<<endl;
+    cout << "12. Delete Last Client"<<endl;
 
-    cout << "\n0. Kembali\n";
+    cout << endl<<"0. Kembali"<<endl;
     cout << "Pilih: ";
 }
 
@@ -41,7 +41,7 @@ void adminPage(ListDeveloper &L) {
 
             adrDeveloper P = createElementDeveloper(x);
             insertFirstDeveloper(L, P);
-            cout << "Insert First berhasil.\n";
+            cout << "Insert First berhasil."<<endl;
         } else if (pilihan == 2) {
             string idPrev;
             cout << "ID Developer sebelumnya: ";
@@ -57,10 +57,10 @@ void adminPage(ListDeveloper &L) {
                 cout << "Rating: "; cin >> x.rating;
 
                 adrDeveloper P = createElementDeveloper(x);
-                insertAfterDeveloper(L, Prec, P);
-                cout << "Insert After berhasil.\n";
+                insertAfterDeveloper(Prec, P);
+                cout << "Insert After berhasil."<<endl;
             } else {
-                cout << "Developer tidak ditemukan.\n";
+                cout << "Developer tidak ditemukan."<<endl;
             }
         } else if (pilihan == 3) {
             infotypeDeveloper x;
@@ -71,7 +71,7 @@ void adminPage(ListDeveloper &L) {
 
             adrDeveloper P = createElementDeveloper(x);
             insertLastDeveloper(L, P);
-            cout << "Insert Last berhasil.\n";
+            cout << "Insert Last berhasil."<<endl;
         } else if (pilihan == 4) {
             adrDeveloper P;
             deleteFirstDeveloper(L, P);
@@ -79,7 +79,7 @@ void adminPage(ListDeveloper &L) {
                 cout << "Delete First berhasil: " << P->info.namaDeveloper << endl;
                 delete P;
             } else {
-                cout << "List kosong.\n";
+                cout << "List kosong."<<endl;
             }
         } else if (pilihan == 5) {
             string idPrev;
@@ -95,10 +95,10 @@ void adminPage(ListDeveloper &L) {
                     cout << "Delete After berhasil: " << P->info.namaDeveloper << endl;
                     delete P;
                 } else {
-                    cout << "Tidak ada developer setelahnya.\n";
+                    cout << "Tidak ada developer setelahnya."<<endl;
                 }
             } else {
-                cout << "Developer tidak ditemukan.\n";
+                cout << "Developer tidak ditemukan."<<endl;
             }
         } else if (pilihan == 6) {
             adrDeveloper P;
@@ -107,7 +107,7 @@ void adminPage(ListDeveloper &L) {
                 cout << "Delete Last berhasil: " << P->info.namaDeveloper << endl;
                 delete P;
             } else {
-                cout << "List kosong.\n";
+                cout << "List kosong."<<endl;
             }
         } else if (pilihan == 7) {
             string idDev;
@@ -125,9 +125,9 @@ void adminPage(ListDeveloper &L) {
 
                 PointerChild P = createElement_Child(ic);
                 insertFirst_Child(D, P);
-                cout << "Insert First Client berhasil.\n";
+                cout << "Insert First Client berhasil."<<endl;
             } else {
-                cout << "Developer tidak ditemukan.\n";
+                cout << "Developer tidak ditemukan."<<endl;
             }
         } else if (pilihan == 8) {
             string idDev, idPrev;
@@ -147,12 +147,12 @@ void adminPage(ListDeveloper &L) {
                     cout << "Nilai Kontrak: "; cin >> ic.nilaiKontrak;
                     PointerChild P = createElement_Child(ic);
                     insertAfter_Child(Prec, P);
-                    cout << "Insert After Client berhasil.\n";
+                    cout << "Insert After Client berhasil."<<endl;
                 } else {
-                    cout << "Klien sebelumnya tidak ditemukan.\n";
+                    cout << "Klien sebelumnya tidak ditemukan."<<endl;
                 }
             } else {
-                cout << "Developer tidak ditemukan.\n";
+                cout << "Developer tidak ditemukan."<<endl;
             }
         } else if (pilihan == 9) {
             string idDev;
@@ -170,9 +170,9 @@ void adminPage(ListDeveloper &L) {
 
                 PointerChild P = createElement_Child(ic);
                 insertLast_Child(D, P);
-                cout << "Insert Last Client berhasil.\n";
+                cout << "Insert Last Client berhasil."<<endl;
             } else {
-                cout << "Developer tidak ditemukan.\n";
+                cout << "Developer tidak ditemukan."<<endl;
             }
         } else if (pilihan == 10) {
             string idDev;
@@ -185,10 +185,10 @@ void adminPage(ListDeveloper &L) {
                 if (P != nullptr) {
                     cout << "Delete First Client berhasil: " << P->data.namaKlien << endl;
                 } else {
-                    cout << "Tidak ada client.\n";
+                    cout << "Tidak ada client."<<endl;
                 }
             } else {
-                cout << "Developer tidak ditemukan.\n";
+                cout << "Developer tidak ditemukan."<<endl;
             }
         } else if (pilihan == 11) {
             string idDev, idPrev;
@@ -205,13 +205,13 @@ void adminPage(ListDeveloper &L) {
                     if (P != nullptr) {
                         cout << "Delete After Client berhasil: " << P->data.namaKlien << endl;
                     } else {
-                        cout << "Tidak ada client setelahnya.\n";
+                        cout << "Tidak ada client setelahnya."<<endl;
                     }
                 } else {
-                    cout << "Klien sebelumnya tidak ditemukan.\n";
+                    cout << "Klien sebelumnya tidak ditemukan."<<endl;
                 }
             } else {
-                cout << "Developer tidak ditemukan.\n";
+                cout << "Developer tidak ditemukan."<<endl;
             }
         } else if (pilihan == 12) {
             string idDev;
@@ -224,10 +224,10 @@ void adminPage(ListDeveloper &L) {
                 if (P != nullptr) {
                     cout << "Delete Last Client berhasil: " << P->data.namaKlien << endl;
                 } else {
-                    cout << "Tidak ada client.\n";
+                    cout << "Tidak ada client."<<endl;
                 }
             } else {
-                cout << "Developer tidak ditemukan.\n";
+                cout << "Developer tidak ditemukan."<<endl;
             }
         }
     }

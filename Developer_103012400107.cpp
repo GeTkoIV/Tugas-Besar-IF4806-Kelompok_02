@@ -11,11 +11,10 @@ void insertSortedDeveloper(ListDeveloper &L, adrDeveloper P){
     }
     else {
         adrDeveloper Q = L.first;
-        while (Q->next != nullptr &&
-               P->info.idDeveloper > Q->next->info.idDeveloper) {
+        while (Q->next != nullptr && P->info.idDeveloper > Q->next->info.idDeveloper) {
             Q = Q->next;
         }
-        insertAfterDeveloper(L,Q,P);
+        insertAfterDeveloper(Q,P);
     }
 }
 
@@ -74,25 +73,19 @@ void findMaxClientsBySpecialty(ListDeveloper L, string specialty) {
     adrDeveloper P_Dev = L.first;
     adrDeveloper maxDev = nullptr;
     int maxClients = -1;
-
     while (P_Dev != nullptr) {
-
         if (P_Dev->info.spesialisasi == specialty) {
-
             int clientCount = 0;
             PointerChild P_Kli = P_Dev->firstKlien;
-
             while (P_Kli != nullptr) {
                 clientCount++;
                 P_Kli = P_Kli->next;
             }
-
             if (clientCount > maxClients) {
                 maxClients = clientCount;
                 maxDev = P_Dev;
             }
         }
-
         P_Dev = P_Dev->next;
     }
     if (maxDev != nullptr) {
@@ -104,4 +97,30 @@ void findMaxClientsBySpecialty(ListDeveloper L, string specialty) {
              << specialty << "'." << endl;
     }
 }
+void hitungRataRataKontrakDeveloper(ListDeveloper L, string idDev) {
+    adrDeveloper D = findDeveloper(L, idDev);
 
+    if (D != nullptr) {
+        PointerChild P = D->firstKlien;
+        int totalKontrak = 0;
+        int jumlahKlien = 0;
+
+        while (P != nullptr) {
+            totalKontrak = totalKontrak + P->data.nilaiKontrak;
+            jumlahKlien = jumlahKlien + 1;
+            P = P->next;
+        }
+
+        if (jumlahKlien > 0) {
+            float rataRata = float(totalKontrak) / jumlahKlien;
+            cout << "Rata-rata nilai kontrak Developer "
+                 << D->info.namaDeveloper
+                 << " = " << rataRata << endl;
+        } else {
+            cout << "Developer belum memiliki klien."<<endl;
+        }
+
+    } else {
+        cout << "Developer tidak ditemukan."<<endl;
+    }
+}

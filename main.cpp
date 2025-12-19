@@ -3,22 +3,11 @@
 void adminPage(ListDeveloper &L);
 void userPage(ListDeveloper &L);
 
-bool loginAdmin() {
-    string username, password;
-
-    cout << "\n===== LOGIN ADMIN =====\n";
-    cout << "Username: ";
-    cin >> username;
-    cout << "Password: ";
-    cin >> password;
-
-    if (username == "admin" && password == "12345") {
-        cout << "Login berhasil!\n";
+bool loginAdmin(string username, string password) {
+    if (username == "admin" && password == "123") {
         return true;
-    } else {
-        cout << "Login gagal! Username atau password salah.\n";
-        return false;
     }
+    return false;
 }
 
 int main() {
@@ -30,25 +19,27 @@ int main() {
 
     while (role != 0) {
 
-        cout << "\n===== MENU UTAMA =====\n";
-        cout << "1. Admin (Login)\n";
-        cout << "2. User\n";
-        cout << "0. Keluar\n";
+        cout << endl <<"===== MENU UTAMA ====="<<endl;
+        cout << "1. Admin (Login)"<<endl;
+        cout << "2. User"<<endl;
+        cout << "0. Keluar"<<endl;
         cout << "Pilih: ";
         cin >> role;
 
         if (role == 1) {
-
-            bool auth = loginAdmin();
-
-            if (auth == true) {
+            string user, pass;
+            cout << "Username: ";
+            cin >> user;
+            cout << "Password: ";
+            cin >> pass;
+            if (loginAdmin(user, pass)) {
+                cout << "Login admin berhasil"<<endl;
                 adminPage(L);
+            } else {
+            cout << "Login admin gagal"<<endl;
             }
-
         } else if (role == 2) {
-
             userPage(L);
-
         }
     }
 

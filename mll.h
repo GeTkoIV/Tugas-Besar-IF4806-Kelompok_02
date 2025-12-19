@@ -47,7 +47,7 @@ void deleteLastDeveloper(ListDeveloper &L, adrDeveloper &P);
 adrDeveloper findDeveloper(ListDeveloper L, string id);
 
 void insertSortedDeveloper(ListDeveloper &L, adrDeveloper P);
-void insertAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper P);
+void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P);
 void deleteDeveloperByID(ListDeveloper &L, string id);
 void deleteAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper &P);
 
@@ -74,6 +74,8 @@ void showAllClientsByOneDeveloper(ListDeveloper L, string idDev);
 void showChildByDeveloperAndProgress(ListDeveloper L, string idDev, string targetProgress);
 void deleteChildById(adrDeveloper P_Dev, string id, PointerChild &P_Kli);
 void findKlienWithMinContract(ListDeveloper L);
+void updateProgressKlien(adrDeveloper P_Dev, string idKlien, string progressBaru);
+void hitungRataRataKontrakDeveloper(ListDeveloper L, string idDev);
 
 
 #endif // MLL_H_INCLUDED
