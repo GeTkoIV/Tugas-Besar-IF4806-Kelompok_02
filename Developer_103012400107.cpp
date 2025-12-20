@@ -14,7 +14,7 @@ void insertSortedDeveloper(ListDeveloper &L, adrDeveloper P){
         while (Q->next != nullptr && P->info.idDeveloper > Q->next->info.idDeveloper) {
             Q = Q->next;
         }
-        insertAfterDeveloper(Q,P);
+        insertAfterDeveloper(L,Q,P);
     }
 }
 
@@ -112,7 +112,7 @@ void hitungRataRataKontrakDeveloper(ListDeveloper L, string idDev) {
         }
 
         if (jumlahKlien > 0) {
-            float rataRata = float(totalKontrak) / jumlahKlien;
+            float rataRata = (float) totalKontrak / jumlahKlien;
             cout << "Rata-rata nilai kontrak Developer "
                  << D->info.namaDeveloper
                  << " = " << rataRata << endl;
