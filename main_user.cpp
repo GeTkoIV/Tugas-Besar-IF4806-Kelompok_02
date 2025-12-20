@@ -15,9 +15,11 @@ void menuUser() {
     cout << "9. Hapus Developer (berdasarkan ID)"<<endl;
     cout << "10. Ubah Progress Project Klien"<<endl;
     cout << "11. Hitung Rata-rata Kontrak Developer"<<endl;
+    cout << "12. Tambah Client ke Developer (Sorted)"<<endl;
     cout << "0. Kembali"<<endl;
     cout << "Pilih: ";
 }
+
 
 void userPage(ListDeveloper &L) {
 
@@ -124,6 +126,33 @@ void userPage(ListDeveloper &L) {
             cout << "ID Developer: ";
             cin >> idDev;
             hitungRataRataKontrakDeveloper(L, idDev);
+        } else if (pilihan == 12) {
+            InfoChild ic;
+            string idDev;
+            cout << "ID Developer: ";
+            cin >> idDev;
+            adrDeveloper D = findDeveloper(L, idDev);
+            if (D != nullptr) {
+                cout << "ID Klien       : ";
+                cin >> ic.idKlien;
+                cout << "Nama Klien     : ";
+                cin >> ic.namaKlien;
+                cout << "Project        : ";
+                cin >> ic.project;
+                cout << "Progress       : ";
+                cin >> ic.progress;
+                cout << "Nilai Kontrak  : ";
+                cin >> ic.nilaiKontrak;
+                if (findElement_Child(D, ic.idKlien) == nullptr) {
+                    PointerChild P = createElement_Child(ic);
+                    insertSorted_Child(D, P);
+                    cout << "Klien berhasil ditambahkan secara TERURUT." << endl;
+                } else {
+                    cout << "ID Klien sudah terdaftar." << endl;
+                }
+            } else {
+                cout << "Developer tidak ditemukan." << endl;
+            }
         }
     }
 }

@@ -1,32 +1,25 @@
 #include "mll.h"
 void insertAfter_Child(PointerChild Prec, PointerChild P_Kli) {
-    if (P_Kli != nullptr) {
-        if (Prec == nullptr) {
-        } else if (Prec->next == nullptr) {
-            Prec->next = P_Kli;
-            P_Kli->next = nullptr;
-        } else {
-            P_Kli->next = Prec->next;
-            Prec->next = P_Kli;
-        }
+    if (Prec != nullptr && P_Kli != nullptr) {
+        P_Kli->next = Prec->next;
+        Prec->next = P_Kli;
     }
 }
 void insertSorted_Child(adrDeveloper P_Dev, PointerChild P_Kli) {
-    if (P_Dev->firstKlien == nullptr ||
-        P_Kli->data.idKlien < P_Dev->firstKlien->data.idKlien) {
-
-        P_Kli->next = P_Dev->firstKlien;
-        P_Dev->firstKlien = P_Kli;
-    }
-    else {
-        PointerChild Q = P_Dev->firstKlien;
-        while (Q->next != nullptr &&
-               P_Kli->data.idKlien > Q->next->data.idKlien) {
-            Q = Q->next;
+    if (P_Dev != nullptr && P_Kli != nullptr) {
+        if (P_Dev->firstKlien == nullptr || P_Kli->data.idKlien < P_Dev->firstKlien->data.idKlien) {
+            P_Kli->next = P_Dev->firstKlien;
+            P_Dev->firstKlien = P_Kli;
+        } else {
+            PointerChild Q = P_Dev->firstKlien;
+            while (Q->next != nullptr && P_Kli->data.idKlien > Q->next->data.idKlien) {
+                Q = Q->next;
+            }
+            insertAfter_Child(Q, P_Kli);
         }
-        insertAfter_Child(Q, P_Kli);
     }
 }
+
 void findKlienWithMinContract(ListDeveloper L) {
     adrDeveloper P_Dev = L.first;
     PointerChild minKlien = nullptr;
@@ -99,41 +92,16 @@ void insertChildToDeveloper(ListDeveloper &L, InfoChild infoKlien, string idDev)
 
     }
 }
-void deleteChildByProgress(adrDeveloper P_Dev, string progress, PointerChild &P_Kli){
-    P_Kli = nullptr;
-    if (P_Dev->firstKlien != nullptr) {
-        if (P_Dev->firstKlien->data.progress == progress) {
-            P_Kli = P_Dev->firstKlien;
-            P_Dev->firstKlien = P_Kli->next;
-            P_Kli->next = nullptr;
-        }
-        else {
-            PointerChild Q = P_Dev->firstKlien;
-            while (Q->next != nullptr) {
-                if (Q->next->data.progress == progress) {
-                    P_Kli = Q->next;
-                    Q->next = P_Kli->next;
-                    P_Kli->next = nullptr;
-                    Q = Q->next;
-                }
-                else {
-                    Q = Q->next;
-                }
-            }
-        }
-    }
-}
+
 void deleteAfter_Child(adrDeveloper P_Dev, PointerChild Prec, PointerChild &P_Kli){
     P_Kli = nullptr;
-    if (P_Dev != nullptr && Prec != nullptr) {
-        PointerChild target = Prec->next;
-        if (target != nullptr) {
-            Prec->next = target->next;
-            target->next = nullptr;
-            P_Kli = target;
-        }
+    if (P_Dev != nullptr && Prec != nullptr && Prec->next != nullptr) {
+        P_Kli = Prec->next;
+        Prec->next = P_Kli->next;
+        P_Kli->next = nullptr;
     }
 }
+
 void deleteChildById(adrDeveloper P_Dev, string id, PointerChild &P_Kli) {
     P_Kli = nullptr;
 
@@ -174,15 +142,25 @@ PointerChild findElement_Child(adrDeveloper P_Dev, string idKlien) {
     return P;
 }
 void updateProgressKlien(adrDeveloper P_Dev, string idKlien, string progressBaru) {
-    PointerChild P = P_Dev->firstKlien;
+    PointerChild P = nullptr;
+    PointerChild ditemukan = nullptr;
 
-    while (P != nullptr) {
-        if (P->data.idKlien == idKlien) {
-            P->data.progress = progressBaru;
-            cout << "Progress klien berhasil diperbarui.\n";
+    if (P_Dev != nullptr) {
+        P = P_Dev->firstKlien;
+
+        while (P != nullptr) {
+            if (P->data.idKlien == idKlien) {
+                P->data.progress = progressBaru;
+                ditemukan = P;
+            }
+            P = P->next;
         }
-        P = P->next;
     }
 
-    cout << "Klien tidak ditemukan.\n";
+    if (ditemukan != nullptr) {
+        cout << "Progress klien berhasil diperbarui."<<endl;
+    } else {
+        cout << "Klien tidak ditemukan."<<endl;
+    }
 }
+
