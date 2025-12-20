@@ -51,12 +51,14 @@ void insertLastDeveloper(ListDeveloper &L, adrDeveloper P) {
     }
 }
 
-void insertAfterDeveloper(adrDeveloper Prec, adrDeveloper P) {
+void insertAfterDeveloper(ListDeveloper &L, adrDeveloper Prec, adrDeveloper P) {
     if (Prec != nullptr) {
         P->next = Prec->next;
         P->prev = Prec;
         if (Prec->next != nullptr) {
             Prec->next->prev = P;
+        } else {
+            L.last = P;
         }
         Prec->next = P;
     }
